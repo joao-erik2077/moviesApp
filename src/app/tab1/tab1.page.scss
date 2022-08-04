@@ -1,0 +1,8 @@
+ion-slides {
+  --scroll-bar-background: none;
+  --scroll-bar-background-active: var(--ion-color-warning);
+
+  ion-slide {
+    display: block;
+  }
+}
