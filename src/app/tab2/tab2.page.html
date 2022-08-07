@@ -8,4 +8,54 @@
 
 <ion-content [fullscreen]="true">
 
+  <ion-slides scrollbar mode="ios" class="slidesPrincipal">
+    <ion-slide *ngFor="let serie of seriesPrincipal" (click)="changeModal(serie)">
+      <img [src]="serie.foto">
+    </ion-slide>
+  </ion-slides>
+
+  <h1>Séries Populares</h1>
+  <ion-slides mode="ios" [options]="{slidesPerView: 2, loop: true}" class="slidesRoleta">
+    <ion-slide *ngFor="let serie of seriesRoleta1" (click)="changeModal(serie)">
+      <img [src]="serie.foto">
+    </ion-slide>
+  </ion-slides>
+
+  <h1>Séries Melhores Avaliadas</h1>
+  <ion-slides mode="ios" [options]="{slidesPerView: 2, loop: true}" class="slidesRoleta">
+    <ion-slide *ngFor="let serie of seriesRoleta2" (click)="changeModal(serie)">
+      <img [src]="serie.foto">
+    </ion-slide>
+  </ion-slides>
+
+  <ion-modal #modal>
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="modal.dismiss()">
+              <ion-icon name="arrow-back" slot="icon-only" color="warning"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+          <ion-title color="warning">
+            {{ serieModal.nome }}
+          </ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="modalContent">
+        <img [src]="serieModal.foto">
+        <h1>{{ serieModal.nome }}</h1>
+        <div>
+          <ion-chip *ngFor="let categoria of serieModal.categorias">
+            {{ categoria }}
+          </ion-chip>
+        </div>
+        <div class="anoAvaliacao">
+          <ion-badge color="dark">{{ serieModal.ano }}</ion-badge>
+          <ion-chip [color]="serieModal.avaliacao > 70 ? 'success' : serieModal.avaliacao > 40 ? 'warning' : 'danger'">{{ serieModal.avaliacao }}%</ion-chip>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
 </ion-content>

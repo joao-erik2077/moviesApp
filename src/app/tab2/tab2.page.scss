@@ -1,0 +1,34 @@
+.slidesPrincipal {
+  --scroll-bar-background: none;
+  --scroll-bar-background-active: var(--ion-color-warning);
+
+  ion-slide {
+    display: block;
+    img {
+      border-radius: 0.25rem;
+    }
+  }
+}
+
+.slidesRoleta {
+  ion-slide {
+    img {
+      border-radius: 0.25rem;
+    }
+  }
+}
+
+ion-modal {
+  --height: 85%;
+}
+
+.anoAvaliacao {
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+
+  ion-badge {
+    height: 100%;
+    font-size: 1.5rem;
+  }
+}

@@ -7,20 +7,55 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-slides scrollbar mode="ios">
-    <ion-slide>
-      <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/tzFAboMUGJKoPQEtlxfxbbYsSWa.jpg">
-      <h1>Minions 2</h1>
-    </ion-slide>
 
-    <ion-slide>
-      <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/tzFAboMUGJKoPQEtlxfxbbYsSWa.jpg">
-      <h1>Minions 2</h1>
-    </ion-slide>
-
-    <ion-slide>
-      <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/tzFAboMUGJKoPQEtlxfxbbYsSWa.jpg">
-      <h1>Minions 2</h1>
+  <ion-slides scrollbar mode="ios" class="slidesPrincipal">
+    <ion-slide *ngFor="let filme of filmesPrincipal" (click)="changeModal(filme)">
+      <img [src]="filme.foto">
     </ion-slide>
   </ion-slides>
+
+  <h1>Filmes Populares</h1>
+  <ion-slides mode="ios" [options]="{slidesPerView: 2, loop: true}" class="slidesRoleta">
+    <ion-slide *ngFor="let filme of filmesRoleta1" (click)="changeModal(filme)">
+      <img [src]="filme.foto">
+    </ion-slide>
+  </ion-slides>
+
+  <h1>Filmes Melhores Avaliados</h1>
+  <ion-slides mode="ios" [options]="{slidesPerView: 2, loop: true}" class="slidesRoleta">
+    <ion-slide *ngFor="let filme of filmesRoleta2" (click)="changeModal(filme)">
+      <img [src]="filme.foto">
+    </ion-slide>
+  </ion-slides>
+
+  <ion-modal #modal>
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="modal.dismiss()">
+              <ion-icon name="arrow-back" slot="icon-only" color="warning"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+          <ion-title color="warning">
+            {{ filmeModal.nome }}
+          </ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="modalContent">
+        <img [src]="filmeModal.foto">
+        <h1>{{ filmeModal.nome }}</h1>
+        <div>
+          <ion-chip *ngFor="let categoria of filmeModal.categorias">
+            {{ categoria }}
+          </ion-chip>
+        </div>
+        <div class="anoAvaliacao">
+          <ion-badge color="dark">{{ filmeModal.ano }}</ion-badge>
+          <ion-chip [color]="filmeModal.avaliacao > 70 ? 'success' : filmeModal.avaliacao > 40 ? 'warning' : 'danger'">{{ filmeModal.avaliacao }}%</ion-chip>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
 </ion-content>
