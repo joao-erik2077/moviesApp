@@ -8,25 +8,25 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-slides scrollbar mode="ios" class="slidesPrincipal">
-    <ion-slide *ngFor="let filme of filmesPrincipal" (click)="changeModal(filme)">
-      <img [src]="filme.foto">
-    </ion-slide>
-  </ion-slides>
+  <swiper scrollbar mode="ios" class="slidesPrincipal">
+    <ng-template swiperSlide *ngFor="let filme of filmesPrincipal">
+      <img [src]="filme.foto" (click)="changeModal(filme)">
+    </ng-template>
+  </swiper>
 
   <h1>Filmes Populares</h1>
-  <ion-slides mode="ios" [options]="{slidesPerView: 2}" class="slidesRoleta">
-    <ion-slide *ngFor="let filme of filmesRoleta1" (click)="changeModal(filme)">
-      <img [src]="filme.foto">
-    </ion-slide>
-  </ion-slides>
+  <swiper mode="ios" [config]="{slidesPerView: 2, loop: true}" class="slidesRoleta">
+    <ng-template swiperSlide *ngFor="let filme of filmesRoleta1">
+      <img [src]="filme.foto" (click)="changeModal(filme)">
+    </ng-template>
+  </swiper>
 
   <h1>Filmes Melhores Avaliados</h1>
-  <ion-slides mode="ios" [options]="{slidesPerView: 2}" class="slidesRoleta">
-    <ion-slide *ngFor="let filme of filmesRoleta2" (click)="changeModal(filme)">
-      <img [src]="filme.foto">
-    </ion-slide>
-  </ion-slides>
+  <swiper mode="ios" [config]="{slidesPerView: 2, loop: true}" class="slidesRoleta">
+    <ng-template swiperSlide *ngFor="let filme of filmesRoleta2">
+      <img [src]="filme.foto" (click)="changeModal(filme)">
+    </ng-template>
+  </swiper>
 
   <ion-modal #modal>
     <ng-template>

@@ -8,25 +8,25 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-slides scrollbar mode="ios" class="slidesPrincipal">
-    <ion-slide *ngFor="let serie of seriesPrincipal" (click)="changeModal(serie)">
-      <img [src]="serie.foto">
-    </ion-slide>
-  </ion-slides>
+  <swiper scrollbar mode="ios" class="slidesPrincipal">
+    <ng-template swiperSlide *ngFor="let serie of seriesPrincipal">
+      <img [src]="serie.foto" (click)="changeModal(serie)">
+    </ng-template>
+  </swiper>
 
   <h1>Séries Populares</h1>
-  <ion-slides mode="ios" [options]="{slidesPerView: 2, loop: true}" class="slidesRoleta">
-    <ion-slide *ngFor="let serie of seriesRoleta1" (click)="changeModal(serie)">
-      <img [src]="serie.foto">
-    </ion-slide>
-  </ion-slides>
+  <swiper mode="ios" [config]="{slidesPerView: 2, loop: true}" class="slidesRoleta">
+    <ng-template swiperSlide *ngFor="let serie of seriesRoleta1">
+      <img [src]="serie.foto" (click)="changeModal(serie)">
+    </ng-template>
+  </swiper>
 
   <h1>Séries Melhores Avaliadas</h1>
-  <ion-slides mode="ios" [options]="{slidesPerView: 2, loop: true}" class="slidesRoleta">
-    <ion-slide *ngFor="let serie of seriesRoleta2" (click)="changeModal(serie)">
-      <img [src]="serie.foto">
-    </ion-slide>
-  </ion-slides>
+  <swiper mode="ios" [config]="{slidesPerView: 2, loop: true}" class="slidesRoleta">
+    <ng-template swiperSlide *ngFor="let serie of seriesRoleta2">
+      <img [src]="serie.foto" (click)="changeModal(serie)">
+    </ng-template>
+  </swiper>
 
   <ion-modal #modal>
     <ng-template>
